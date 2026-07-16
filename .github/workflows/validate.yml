@@ -28,7 +28,7 @@ jobs:
           foreach ($field in @('name', 'description', 'license', 'compatibility')) {
             if ($content -notmatch "(?m)^${field}:") { throw "Missing frontmatter field: $field" }
           }
-          if ($content -match 'TODO_PUBLICATION') { throw 'Unresolved publication TODO marker' }
+          if ($content -match '<!--\s*TODO_PUBLICATION') { throw 'Unresolved publication TODO marker' }
           $blocked = Get-ChildItem -LiteralPath $skill -Recurse -Force | Where-Object {
             $_.Name -in @('.env', 'cookies.txt', 'node_modules', '.venv', '__pycache__') -or
             $_.Name -like '*.cookies.txt' -or $_.Name -like '*.pem' -or $_.Name -like '*.key'

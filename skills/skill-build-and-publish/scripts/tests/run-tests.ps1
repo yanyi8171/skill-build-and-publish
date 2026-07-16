@@ -85,6 +85,8 @@ try {
     $generatedWorkflow = [System.IO.File]::ReadAllText((Join-Path $packageResult.repositoryPath '.github/workflows/validate.yml'))
     Assert-True $generatedWorkflow.Contains('(?m)^${field}:') 'workflow safely delimits frontmatter field variable'
     Assert-True (-not $generatedWorkflow.Contains('(?m)^$field:')) 'workflow excludes invalid PowerShell variable syntax'
+    Assert-True $generatedWorkflow.Contains('<!--\s*TODO_PUBLICATION') 'workflow only blocks unresolved HTML publication markers'
+    Assert-True (-not ([regex]::IsMatch([System.IO.File]::ReadAllText((Join-Path (Get-SkillBuildRoot) 'SKILL.md')), '<!--\s*TODO_PUBLICATION'))) 'self documentation may name the marker without being blocked'
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $zip = [System.IO.Compression.ZipFile]::OpenRead($packageResult.zipPath)
     try {

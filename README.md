@@ -49,7 +49,7 @@ hermes skills install skills-sh/yy1675430-stack/skill-build-and-publish/skill-bu
 
 ### Tencent WorkBuddy
 
-从 [GitHub Release](https://github.com/yy1675430-stack/skill-build-and-publish/releases/tag/v0.1.1) 下载 `skill-build-and-publish-v0.1.1.zip`，然后打开“专家技能连接器”→“技能”→“添加技能”→“上传技能”。等待安全检查完成后，在“已安装”中确认名称。
+从 [GitHub Release](https://github.com/yy1675430-stack/skill-build-and-publish/releases/tag/v0.1.2) 下载 `skill-build-and-publish-v0.1.2.zip`，然后打开“专家技能连接器”→“技能”→“添加技能”→“上传技能”。等待安全检查完成后，在“已安装”中确认名称。
 
 ### 其他兼容客户端
 
