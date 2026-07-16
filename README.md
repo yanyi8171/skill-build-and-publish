@@ -26,35 +26,35 @@ This repository follows the common Agent Skills directory layout. Skill discover
 ### Claude Code
 
 ```powershell
-gh skill install yy1675430-stack/skill-build-and-publish skill-build-and-publish --agent claude-code --scope user
+gh skill install yanyi8171/skill-build-and-publish skill-build-and-publish --agent claude-code --scope user
 ```
 
 ### Codex
 
 ```powershell
-gh skill install yy1675430-stack/skill-build-and-publish skill-build-and-publish --agent codex --scope user
+gh skill install yanyi8171/skill-build-and-publish skill-build-and-publish --agent codex --scope user
 ```
 
 也可以把下面的仓库地址交给 Codex 的 Skill Installer：
 
 ```text
-https://github.com/yy1675430-stack/skill-build-and-publish/tree/main/skills/skill-build-and-publish
+https://github.com/yanyi8171/skill-build-and-publish/tree/main/skills/skill-build-and-publish
 ```
 
 ### Hermes Agent
 
 ```powershell
-hermes skills install skills-sh/yy1675430-stack/skill-build-and-publish/skill-build-and-publish
+hermes skills install skills-sh/yanyi8171/skill-build-and-publish/skill-build-and-publish
 ```
 
 ### Tencent WorkBuddy
 
-从 [GitHub Release](https://github.com/yy1675430-stack/skill-build-and-publish/releases/tag/v0.1.2) 下载 `skill-build-and-publish-v0.1.2.zip`，然后打开“专家技能连接器”→“技能”→“添加技能”→“上传技能”。等待安全检查完成后，在“已安装”中确认名称。
+从 [GitHub Release](https://github.com/yanyi8171/skill-build-and-publish/releases/tag/v0.1.3) 下载 `skill-build-and-publish-v0.1.3.zip`，然后打开“专家技能连接器”→“技能”→“添加技能”→“上传技能”。等待安全检查完成后，在“已安装”中确认名称。
 
 ### 其他兼容客户端
 
 ```powershell
-npx skills add yy1675430-stack/skill-build-and-publish --skill skill-build-and-publish -g
+npx skills add yanyi8171/skill-build-and-publish --skill skill-build-and-publish -g
 ```
 
 ## 使用／Usage

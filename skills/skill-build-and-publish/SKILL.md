@@ -4,8 +4,8 @@ description: 把“创建、测试、登记、GitHub 包装、确认发布和跨
 license: MIT
 compatibility: 个人版，面向 Windows 10/11、PowerShell 5.1+、当前技能真源库结构；创建与包装不需要 GitHub 登录，真正发布需要 git、GitHub CLI 和已授权账号。产出的 Skill 采用通用 Agent Skills 结构，目标客户端包括 Claude Code、Codex、Hermes 和 WorkBuddy。
 metadata:
-  author: yy1675430-stack
-  version: "0.1.2"
+  author: yanyi8171
+  version: "0.1.3"
 ---
 
 # Skill 创建与发布总控

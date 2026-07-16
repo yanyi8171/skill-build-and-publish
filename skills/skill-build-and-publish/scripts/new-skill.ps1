@@ -3,7 +3,7 @@ param(
     [Parameter(Mandatory = $true)][string]$Name,
     [Parameter(Mandatory = $true)][string]$DescriptionZh,
     [string]$DescriptionEn = '',
-    [string]$Author = 'yy1675430-stack',
+    [string]$Author = 'yanyi8171',
     [string]$Version = '0.1.0',
     [string]$License = 'MIT',
     [string[]]$TestPrompt,

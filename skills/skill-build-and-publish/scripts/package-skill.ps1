@@ -4,7 +4,7 @@ param(
     [Parameter(Mandatory = $true, ParameterSetName = 'ByPath')][string]$SkillPath,
     [string]$TrueSourceRoot,
     [string]$OutputRoot,
-    [string]$GitHubOwner = 'yy1675430-stack',
+    [string]$GitHubOwner = 'yanyi8171',
     [string]$Version,
     [string]$ThirdPartyNoticesPath,
     [string]$RepositoryNotice = ''

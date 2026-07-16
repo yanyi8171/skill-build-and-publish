@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3 - 2026-07-16
+
+### Changed
+
+- Updated the GitHub owner and default author from `yy1675430-stack` to `yanyi8171`.
+- Updated repository links, installation commands, release links, and generated publishing defaults.
+
 ## 0.1.2 - 2026-07-16
 
 ### Fixed
