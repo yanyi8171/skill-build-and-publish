@@ -1,0 +1,61 @@
+name: Validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-14]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Validate Agent Skill structure
+        shell: pwsh
+        run: |
+          $skill = 'skills/{{SKILL_NAME}}'
+          $skillMd = Join-Path $skill 'SKILL.md'
+          if (-not (Test-Path -LiteralPath $skillMd)) { throw 'Missing SKILL.md' }
+          $content = Get-Content -LiteralPath $skillMd -Raw
+          foreach ($field in @('name', 'description', 'license', 'compatibility')) {
+            if ($content -notmatch "(?m)^$field:") { throw "Missing frontmatter field: $field" }
+          }
+          if ($content -match 'TODO_PUBLICATION') { throw 'Unresolved publication TODO marker' }
+          $blocked = Get-ChildItem -LiteralPath $skill -Recurse -Force | Where-Object {
+            $_.Name -in @('.env', 'cookies.txt', 'node_modules', '.venv', '__pycache__') -or
+            $_.Name -like '*.cookies.txt' -or $_.Name -like '*.pem' -or $_.Name -like '*.key'
+          }
+          if ($blocked) { throw "Blocked files found: $($blocked.FullName -join ', ')" }
+
+      - name: Parse PowerShell scripts
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Get-ChildItem 'skills/{{SKILL_NAME}}' -Recurse -Filter '*.ps1' | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors.Count) { $errors | ForEach-Object { Write-Error $_ }; exit 1 }
+          }
+
+      - name: Parse POSIX shell scripts
+        if: runner.os == 'macOS'
+        run: |
+          while IFS= read -r -d '' file; do
+            sh -n "$file"
+          done < <(find "skills/{{SKILL_NAME}}" -type f -name '*.sh' -print0)
+
+      - name: Run bundled PowerShell tests when present
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $test = 'skills/{{SKILL_NAME}}/scripts/tests/run-tests.ps1'
+          if (Test-Path -LiteralPath $test) { & $test }

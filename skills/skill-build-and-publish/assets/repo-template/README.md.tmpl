@@ -1,0 +1,85 @@
+# {{SKILL_NAME}}
+
+{{DESCRIPTION}}
+
+{{REPOSITORY_NOTICE}}
+
+## 支持范围／Compatibility
+
+本仓库使用通用 Agent Skills 目录结构。真正负责发现、安装和运行 Skill 的是 Agent 客户端，而不是模型本身。
+
+This repository follows the common Agent Skills directory layout. Skill discovery and execution depend on the Agent client, not the underlying model alone.
+
+| 客户端 | 安装方式 | 状态 |
+|---|---|---|
+| Claude Code | GitHub CLI | 结构已验证，发布后需回装确认 |
+| Codex | GitHub CLI／Skill Installer | 结构已验证，发布后需回装确认 |
+| Hermes Agent | Skills Hub | 结构已验证，发布后需回装确认 |
+| Tencent WorkBuddy | Release ZIP | ZIP 结构已验证，发布后需真机确认 |
+
+## 安装／Install
+
+### Claude Code
+
+```powershell
+gh skill install {{OWNER}}/{{SKILL_NAME}} {{SKILL_NAME}} --agent claude-code --scope user
+```
+
+### Codex
+
+```powershell
+gh skill install {{OWNER}}/{{SKILL_NAME}} {{SKILL_NAME}} --agent codex --scope user
+```
+
+也可以把下面的仓库地址交给 Codex 的 Skill Installer：
+
+```text
+https://github.com/{{OWNER}}/{{SKILL_NAME}}/tree/main/skills/{{SKILL_NAME}}
+```
+
+### Hermes Agent
+
+```powershell
+hermes skills install skills-sh/{{OWNER}}/{{SKILL_NAME}}/{{SKILL_NAME}}
+```
+
+### Tencent WorkBuddy
+
+从 [GitHub Release](https://github.com/{{OWNER}}/{{SKILL_NAME}}/releases/tag/v{{VERSION}}) 下载 `{{SKILL_NAME}}-v{{VERSION}}.zip`，然后打开“专家技能连接器”→“技能”→“添加技能”→“上传技能”。等待安全检查完成后，在“已安装”中确认名称。
+
+### 其他兼容客户端
+
+```powershell
+npx skills add {{OWNER}}/{{SKILL_NAME}} --skill {{SKILL_NAME}} -g
+```
+
+## 使用／Usage
+
+安装后直接对 Agent 说：
+
+```text
+使用 {{SKILL_NAME}}，帮我完成这个任务。先预检，再执行。
+```
+
+详细行为、输入要求和失败处理见 [`SKILL.md`](skills/{{SKILL_NAME}}/SKILL.md)。
+
+## 成功标志／Success
+
+- Agent 的 Skill 列表中出现 `{{SKILL_NAME}}`。
+- Skill 能被真实任务触发，并按 `SKILL.md` 给出可检查结果。
+- 重新运行时不覆盖原始资料，也不重复产生已有结果。
+
+## 排查／Troubleshooting
+
+1. 找不到 Skill：确认安装到了正确客户端和用户级目录，重启客户端后再查。
+2. Skill 不触发：明确说“使用 {{SKILL_NAME}}”，同时提供必要输入。
+3. WorkBuddy 导入失败：确认上传的是 Release ZIP，且 ZIP 顶层的 `{{SKILL_NAME}}` 文件夹内存在 `SKILL.md`。
+4. 脚本无法运行：检查系统、外部工具和权限是否符合 `compatibility`。
+
+{{THIRD_PARTY_SECTION}}
+
+## 许可证／License
+
+[MIT](LICENSE)。允许使用、修改和再分发，但必须保留许可证和版权声明。
+
+MIT licensed. Use, modification, and redistribution are allowed with the license and copyright notice retained.

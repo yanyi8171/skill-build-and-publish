@@ -1,0 +1,29 @@
+{
+  "skill_name": "skill-build-and-publish",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我创建一个可公开发布的 Skill：把一批 Markdown 文件检查出失效链接。先在真源库完成创建和测试，不要上传 GitHub。",
+      "expected_output": "读取 skill-creator，明确目标和触发边界，在真源库创建不覆盖的骨架，准备至少三个测试，并停在本地阶段。",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "检查 extract-youtube-creator-transcripts 现在能不能发布，只检查，不要改文件。",
+      "expected_output": "运行只读预检，报告错误、警告、版本和文件清单，不更新锁文件、不包装、不访问 GitHub。",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "把 extract-youtube-creator-transcripts 包装好，但先别上传。",
+      "expected_output": "从真源复制到临时目录，生成仓库外壳、Release ZIP 和 manifest，证明源哈希未变，并明确 published=false。",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "把我刚做完的 Skill 发到 GitHub。",
+      "expected_output": "先预检和包装，展示仓库可见性、版本、隐私检查、文件清单和精确确认口令；没有用户确认不得创建仓库或推送。",
+      "files": []
+    }
+  ]
+}
