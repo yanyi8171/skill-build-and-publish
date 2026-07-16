@@ -26,7 +26,7 @@ jobs:
           if (-not (Test-Path -LiteralPath $skillMd)) { throw 'Missing SKILL.md' }
           $content = Get-Content -LiteralPath $skillMd -Raw
           foreach ($field in @('name', 'description', 'license', 'compatibility')) {
-            if ($content -notmatch "(?m)^$field:") { throw "Missing frontmatter field: $field" }
+            if ($content -notmatch "(?m)^${field}:") { throw "Missing frontmatter field: $field" }
           }
           if ($content -match 'TODO_PUBLICATION') { throw 'Unresolved publication TODO marker' }
           $blocked = Get-ChildItem -LiteralPath $skill -Recurse -Force | Where-Object {

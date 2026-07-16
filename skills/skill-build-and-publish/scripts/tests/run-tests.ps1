@@ -82,6 +82,9 @@ try {
     Assert-True ((Get-TreeHash -Root $example) -eq $sourceHash) 'package leaves source unchanged'
     $generatedReadme = [System.IO.File]::ReadAllText((Join-Path $packageResult.repositoryPath 'README.md'))
     Assert-True $generatedReadme.Contains('PERSONAL WORKSPACE NOTICE') 'README includes repository-specific compatibility notice'
+    $generatedWorkflow = [System.IO.File]::ReadAllText((Join-Path $packageResult.repositoryPath '.github/workflows/validate.yml'))
+    Assert-True $generatedWorkflow.Contains('(?m)^${field}:') 'workflow safely delimits frontmatter field variable'
+    Assert-True (-not $generatedWorkflow.Contains('(?m)^$field:')) 'workflow excludes invalid PowerShell variable syntax'
     Add-Type -AssemblyName System.IO.Compression.FileSystem
     $zip = [System.IO.Compression.ZipFile]::OpenRead($packageResult.zipPath)
     try {
